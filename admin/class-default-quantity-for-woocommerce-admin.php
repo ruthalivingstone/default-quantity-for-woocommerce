@@ -3,7 +3,7 @@
 /**
  * The admin-specific functionality of the plugin.
  *
- * @link       https://www.thenextwp.co
+ * @link       https://github.com/beyond88
  * @since      1.0.0
  *
  * @package    Default_Quantity_For_Woocommerce
@@ -43,6 +43,43 @@ class Default_Quantity_For_Woocommerce_Admin {
 		$this->version = $version;
 	}
 
+
+
+    /**
+	 * Register the decimal quantity step for the products.
+	 *
+	 * @since   1.0.4
+	 * @params 	array		
+	 * @return 	void 
+	*/	
+	public function dqfwc_quantity_step_settings( $settings ) {
+
+        /* Glabal Decimal step size */
+        $quantity_step = array();
+		foreach ( $settings as &$setting ) {
+
+			$quantity_step[] = $setting;
+			if ( 'woocommerce_manage_stock' === $setting['id'] ) {
+				$quantity_step[] = array(
+					'title'             => __( 'Quantity Step Size', 'woocommerce' ),
+					'desc'              => __( 'If you want to be able to choose decimal values for stock quantities, choose the smallest step size you want (e.g. 0.01)', 'woocommerce' ),
+					'id'                => 'woocommerce_decimal_quantity_step',
+					'type'              => 'number',
+					'custom_attributes' => array(
+						'min'  => 0,
+						'step' => 0.00000001,
+					),
+					'css'               => 'width: 80px;',
+					'default'           => '1',
+					'autoload'          => false,
+					'class'             => 'manage_stock_field',
+				); 
+			}
+		}
+
+		return  $quantity_step; 	
+	}
+	
 	/**
 	 * Register the default quantity settings for the products.
 	 *
@@ -51,33 +88,31 @@ class Default_Quantity_For_Woocommerce_Admin {
 	 * @return 	void 
 	*/	
 	public function dqfwc_default_quantity_settings( $settings ) {
-
-		$new_settings = array();
+        /* Glabal Default Quantity*/
+		$default_quantity = array();
 		foreach ( $settings as &$setting ) {
-
-			$new_settings[] = $setting;
+            
+			$default_quantity[] = $setting;
 			if ( 'woocommerce_manage_stock' === $setting['id'] ) {
-				$new_settings[] = array(
+				$default_quantity[] = array(
 					'title'             => __( 'Global default quantity', 'woocommerce' ),
 					'desc'              => __( 'Choose a default quantity for all your products. You can override this for individual categories/products', 'woocommerce' ),
 					'id'                => 'woocommerce_default_quantity',
 					'type'              => 'number',
 					'custom_attributes' => array(
 						'min'  => 0,
-						'step' => 1,
+						'step' => $dqfwc_step,
 					),
 					'css'               => 'width: 80px;',
 					'default'           => '1',
 					'autoload'          => false,
 					'class'             => 'manage_stock_field',
 				); 
-			}
+            }
+        }
 
-		}
-
-		return $new_settings; 	
+		return  $default_quantity; 	
 	}
-
 	/**
 	 * Add product category meta.
 	 *
@@ -93,9 +128,19 @@ class Default_Quantity_For_Woocommerce_Admin {
 			<label for="term_meta[dqfwc_quantity]">
 				<?php _e('Default quantity', 'default-quantity-for-woocommerce'); ?>
 			</label>
-			<input type="number" name="term_meta[dqfwc_quantity]" id="term_meta[dqfwc_quantity]" min="0" step="1">
+			<input type="number" name="term_meta[dqfwc_quantity]" id="term_meta[dqfwc_quantity]" min="0" step="0.000001">
 			<p class="description">
 				<?php _e('Enter default quantity', 'default-quantity-for-woocommerce'); ?>
+			</p>
+		</div>
+
+		<div class="form-field">
+			<label for="term_meta[dqfwc_step]">
+				<?php _e('Step Size', 'step-size-for-woocommerce'); ?>
+			</label>
+			<input type="number" name="term_meta[dqfwc_step]" id="term_meta[dqfwc_step]" min="0" step="0.000001">
+			<p class="description">
+				<?php _e('Enter quantity step size', 'step-size-for-woocommerce'); ?>
 			</p>
 		</div>
 
@@ -123,9 +168,24 @@ class Default_Quantity_For_Woocommerce_Admin {
 				</label>
 			</th>
 			<td>
-				<input type="number" name="term_meta[dqfwc_quantity]" id="term_meta[dqfwc_quantity]" min="0" step="1" value="<?php echo esc_attr($term_meta['dqfwc_quantity']) ? esc_attr($term_meta['dqfwc_quantity']) : ''; ?>">
+				<input type="number" name="term_meta[dqfwc_quantity]" id="term_meta[dqfwc_quantity]" min="0" step="0.00001" value="<?php echo esc_attr($term_meta['dqfwc_quantity']) ? esc_attr($term_meta['dqfwc_quantity']) : ''; ?>">
 				<p class="description">
 					<?php _e('Enter default quantity', 'default-quantity-for-woocommerce'); ?>
+				</p>
+			</td>			
+		</tr>
+
+		
+		<tr class="form-field">
+			<th scope="row" valign="top">
+				<label for="term_meta[dqfwc_step]">
+					<?php _e('Step Size', 'step-size-for-woocommerce'); ?>
+				</label>
+			</th>
+			<td>
+				<input type="number" name="term_meta[dqfwc_step]" id="term_meta[dqfwc_step]" min="0" step="0.00001" value="<?php echo esc_attr($term_meta['dqfwc_step']) ? esc_attr($term_meta['dqfwc_step']) : ''; ?>">
+				<p class="description">
+					<?php _e('Enter Step Size', 'step-size-for-woocommerce'); ?>
 				</p>
 			</td>			
 		</tr>
@@ -172,7 +232,7 @@ class Default_Quantity_For_Woocommerce_Admin {
 			'label' => __('Default quantity', 'default-quantity-for-woocommerce'),
 			'type'  => 'number',
 			'custom_attributes' => array(
-				'step' => '1',
+				'step' => '0.000001',
 				'min'  => '0'
 			),			
 		]);
@@ -193,5 +253,6 @@ class Default_Quantity_For_Woocommerce_Admin {
 		$product->save();
 
 	}	
+
 
 }

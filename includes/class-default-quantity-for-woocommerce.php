@@ -6,7 +6,7 @@
  * A class definition that includes attributes and functions used across both the
  * public-facing side of the site and the admin area.
  *
- * @link       https://www.thenextwp.co
+ * @link       https://github.com/beyond88
  * @since      1.0.0
  *
  * @package    Default_Quantity_For_Woocommerce
@@ -139,6 +139,7 @@ class Default_Quantity_For_Woocommerce {
 	private function define_admin_hooks() {
 
 		$plugin_admin = new Default_Quantity_For_Woocommerce_Admin( $this->get_plugin_name(), $this->get_version() );
+		$this->loader->add_filter( 'woocommerce_inventory_settings', $plugin_admin, 'dqfwc_quantity_step_settings' );
 		$this->loader->add_filter( 'woocommerce_inventory_settings', $plugin_admin, 'dqfwc_default_quantity_settings' );
 		$this->loader->add_action( 'product_cat_add_form_fields',  $plugin_admin, 'dqfwc_taxonomy_add_new_meta_field', 10, 2 );
 		$this->loader->add_action( 'product_cat_edit_form_fields', $plugin_admin, 'dqfwc_taxonomy_edit_meta_field', 10, 2 );
@@ -147,6 +148,12 @@ class Default_Quantity_For_Woocommerce {
 		$this->loader->add_action( 'woocommerce_product_options_inventory_product_data', $plugin_admin, 'dqfwc_product_default_quantity_meta' );
 		$this->loader->add_action( 'woocommerce_process_product_meta', $plugin_admin, 'dqfwc_save_product_default_quantity_meta' );
 
+		// Removes the WooCommerce filter, that is validating the quantity to be an int
+		remove_filter('woocommerce_stock_amount', 'intval');
+		remove_filter('dqfwc_quantity', 'intval');
+		// Add a filter, that validates the quantity to be a float
+		add_filter('woocommerce_stock_amount', 'floatval');
+		add_filter('dqfwc_quantity', 'floatval');
 	}
 
 	/**
@@ -160,6 +167,9 @@ class Default_Quantity_For_Woocommerce {
 
 		$plugin_public = new Default_Quantity_For_Woocommerce_Public( $this->get_plugin_name(), $this->get_version() );
 		$this->loader->add_filter( 'woocommerce_quantity_input_args', $plugin_public, 'dqfwc_quantity_input_args', 10, 2 );
+		$this->loader->add_filter('woocommerce_quantity_input_step',$plugin_public, 'get_step_size', 10, 2);
+		$this->loader->add_filter( 'woocommerce_loop_add_to_cart_args',$plugin_public, 'get_default_quantity', 10, 2 );
+		$this->loader->add_filter('woocommerce_order_amount_item_total', $plugin_public, 'unit_price_fix', 10, 5);
 
 	}
 
