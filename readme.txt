@@ -12,7 +12,7 @@ Stable tag: 1.0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-The easiest way to set up default quantities for WooCommerce.
+The easiest way to set up default quantities and step sizes for WooCommerce.
 
 == Description ==
 
@@ -28,11 +28,11 @@ Simple, powerfull default quantity options. Change the default quantity and subt
 
 ## 3 WAYS TO SET DEFAULT QUANTITIES AND STEP SIZE
 
-⚖️ Set a global, storewide WooCommerce default quantity and step size (in WooCommerce > Settings > Products > Inventory ).
+⚖️ Set a global, storewide WooCommerce default quantity and step size.
 
-⚖️ Add default quantities and step sizes for entire product categories (in Products > Categories > Edit Category ).
+⚖️ Add default quantities and step sizes for entire product categories.
 
-⚖️ Change the default quantity for specific products. (in Products > Edit Product > Product Data > Inventory ).
+⚖️ Change the default quantity for specific products.
 
 ## CHOOSE ANY DEFAULT QUANTITY - EVEN ZERO!
 
@@ -58,19 +58,49 @@ Simple, powerfull default quantity options. Change the default quantity and subt
 
 ⚖️ Simply install the plugin, and start setting default quantities and step sizes!
 
+== Frequently Asked Questions ==
+
+= Where do I change the global default quantity or step size? =
+
+Set a global, storewide WooCommerce default quantity and step size in **WooCommerce > Settings > Products > Inventory**.
+
+= Can I change the default quantity or step size for a product category? =
+
+Yeas you can! go to **Products > Categories > Edit Category** and you will see the default qantity and step size options.
+
+= What about individual products? =
+
+You can change the settings for individual products in **Products > Edit Product > Product Data > Inventory**.
+
+== Screenshots ==
+1. Set site-wide default quantity and step size
+2. Override the site-wide settings for certain categories
+
+== Installation ==
+
+1. Make sure you have WooCommerce installed and activated.
+
+1. Install this plugin through the wordpress plugin library (**Plugins > Add New**)
+**OR**
+Upload the entire default-quantity-for-woocommerce folder to the **/wp-content/plugins/** directory.
+
+1. Activate the plugin through the Plugins screen (**Plugins > Installed Plugins**).
+
+That's it! Look at the FAQs for the different ways you can set default quantities and step sizes for your WooCommerce products.
+
 == Changelog ==
 
-= 1.0.0 =
-Initial version released
-
-= 1.0.1 =
-Fix fatal error
-
-= 1.0.2 =
-Fix missing admin directory
+= 1.0.4 =
+Added step size
 
 = 1.0.3 =
 Tested on latest WordPress and WooCommerce
 
-= 1.0.4 =
-Added step size
+= 1.0.2 =
+Fix missing admin directory
+
+= 1.0.1 =
+Fix fatal error
+
+= 1.0.0 =
+Initial version released

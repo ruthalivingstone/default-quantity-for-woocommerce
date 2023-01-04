@@ -7,21 +7,21 @@
  * @package           Default_Quantity_For_Woocommerce
  *
  * @wordpress-plugin
- * Plugin Name:       Green Glen Default and Decimal Quantities for WooCommerce
- * Description:       The easiest way to set up default quantities for WooCommerce.
+ * Plugin Name:       Default Quantities and Step Sizes for WooCommerce
+ * Description:       The easiest way to set up default quantities and step sizes for WooCommerce.
  * Version:           1.0.4
  * Author:            Mohiuddin Abdul Kader & Ruth Livingstone
  * Author URI:        https://greenglen.solutions
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       ggs-default-quantity-for-woocommerce
+ * Text Domain:       default-quantity-for-woocommerce
  * Domain Path:       /languages
  * Requires PHP:      5.6
  * Requires at least: 4.4
- * Tested up to:      6.0.1
+ * Tested up to:      6.1.1
  *
  * WC requires at least: 3.1
- * WC tested up to:   6.7.0
+ * WC tested up to:   7.2.2
  * License: GNU General Public License v3.0
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
  */
@@ -31,7 +31,7 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-define( 'DQFWC_VERSION', '1.0.3' );
+define( 'DQFWC_VERSION', '1.0.4' );
 define( 'DQFWC_MINIMUM_PHP_VERSION', '5.6.0' );
 define( 'DQFWC_MINIMUM_WP_VERSION', '4.4' );
 define( 'DQFWC_MINIMUM_WC_VERSION', '3.0.9' );
@@ -43,10 +43,10 @@ define( 'DQFWC_ROOT_DIR_PATH', plugin_dir_path( __FILE__ ) );
 define( 'DQFWC_ADMIN_DIR_PATH', DQFWC_ROOT_DIR_PATH . 'admin/' );
 define( 'DQFWC_PUBLIC_PATH', DQFWC_ROOT_DIR_PATH . 'public/' );
 define( 'DQFWC_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
-define( 'DQFWC_PLUGIN_NAME', 'Default Quantity for WooCommerce' );
+define( 'DQFWC_PLUGIN_NAME', 'Default Quantity and Step Size for WooCommerce' );
 
 /**
- * Min and Max for WooCommerce Start.
+ * Default Quantity and Step Size for WooCommerce.
  *
  * @since 1.0.0
  */
@@ -59,7 +59,7 @@ class Default_Quantity_For_Woocommerce_Launcher {
 	private $notices = array();
 
 	/**
-	 * Loads Min and Max for WooCommerce Start.
+	 * Loads Default Quantity and Step Size for WooCommerce.
 	 *
 	 * @since 1.0.0
 	 */
@@ -85,7 +85,7 @@ class Default_Quantity_For_Woocommerce_Launcher {
 	 */
 	public function __clone() {
 
-		_doing_it_wrong( __FUNCTION__, sprintf( 'You cannot clone instances of %s.', get_class( $this ) ), '1.0.0' );
+		_doing_it_wrong( __FUNCTION__, sprintf( 'You cannot clone instances of %s.', get_class( $this ) ), '1.0.4' );
 	}
 
 	/**
@@ -95,7 +95,7 @@ class Default_Quantity_For_Woocommerce_Launcher {
 	 */
 	public function __wakeup() {
 
-		_doing_it_wrong( __FUNCTION__, sprintf( 'You cannot unserialize instances of %s.', get_class( $this ) ), '1.0.0' );
+		_doing_it_wrong( __FUNCTION__, sprintf( 'You cannot unserialize instances of %s.', get_class( $this ) ), '1.0.4' );
 	}
 
 	/**

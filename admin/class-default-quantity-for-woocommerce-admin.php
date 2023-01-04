@@ -62,7 +62,7 @@ class Default_Quantity_For_Woocommerce_Admin {
 			if ( 'woocommerce_manage_stock' === $setting['id'] ) {
 				$quantity_step[] = array(
 					'title'             => __( 'Quantity Step Size', 'woocommerce' ),
-					'desc'              => __( 'If you want to be able to choose decimal values for stock quantities, choose the smallest step size you want (e.g. 0.01)', 'woocommerce' ),
+					'desc'              => __( 'Choose a step size for your products. If you want to be able to choose decimal values for stock quantities, choose the smallest step size you want (e.g. 0.01)', 'woocommerce' ),
 					'id'                => 'woocommerce_decimal_quantity_step',
 					'type'              => 'number',
 					'custom_attributes' => array(
@@ -71,8 +71,7 @@ class Default_Quantity_For_Woocommerce_Admin {
 					),
 					'css'               => 'width: 80px;',
 					'default'           => '1',
-					'autoload'          => false,
-					'class'             => 'manage_stock_field',
+					'autoload'          => false
 				); 
 			}
 		}
@@ -105,8 +104,7 @@ class Default_Quantity_For_Woocommerce_Admin {
 					),
 					'css'               => 'width: 80px;',
 					'default'           => '1',
-					'autoload'          => false,
-					'class'             => 'manage_stock_field',
+					'autoload'          => false
 				); 
             }
         }

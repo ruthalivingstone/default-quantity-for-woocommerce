@@ -81,7 +81,7 @@ class Default_Quantity_For_Woocommerce_Public {
 		foreach( $dqfwc_product_cats as $term ) {
 			$term_id 	= $term->term_id;
 			$term_meta  = get_option( "taxonomy_" . $term_id );
-				$dqfwc_cat =  $term_meta['dqfwc_quantity']; 
+			$dqfwc_cat =  $term_meta['dqfwc_quantity']; 
 		}
 		
 		/* Individual product default quantity */
@@ -111,6 +111,7 @@ class Default_Quantity_For_Woocommerce_Public {
 	 * @since   1.0.4
 	 * @params 	object		
 	 * @return 	float
+	 * Note: empty returns true if variable does not exist
 	*/ 
 	function get_step_size($args,$product) {
 
@@ -122,14 +123,17 @@ class Default_Quantity_For_Woocommerce_Public {
 		foreach( $dqfwc_product_cats as $term ) {
 			$term_id 	= $term->term_id;
 			$term_meta  = get_option( "taxonomy_" . $term_id );
-				$step_cat =  $term_meta['dqfwc_step']; 
+			$step_cat =  $term_meta['dqfwc_step']; 
 		}
-		/* Individual step size (If there is no unit name, step = 1)*/
-		$step_ind = empty (get_post_meta( $product->get_id(), 'izettle_unit_name_meta', true ));
+
+		/* Individual step size (If there is no unit name, step = 1)/
+		if( empty (get_post_meta( $product->get_id(), 'izettle_unit_name_meta', true )) ){
+			$step_ind = 1;
+		}
 		
 		/* Choose which value to use */
 		if( !empty( $step_ind ) ) {
-			$dqfwc_step = 1;
+			$dqfwc_step = $step_ind;
 		} elseif( !empty( $step_cat ) ) {
 			$dqfwc_step = $step_cat;
 		} elseif( !empty( $step_global ) ) {
@@ -139,6 +143,7 @@ class Default_Quantity_For_Woocommerce_Public {
 		}
 		return $dqfwc_step;
 	}
+	
 	/**
 	 * Add unit price fix when showing the unit price on processed orders
 	 *
