@@ -1,12 +1,12 @@
-=== Green Glen Default and Decimal Quantities for WooCommerce ===
+=== Default Quantities and Step Sizes for WooCommerce ===
 Contributors: hossain88, ruthalivingstone
-Plugin Name: Green Glen Default and Decimal Quantities for WooCommerce
+Plugin Name: Default and Decimal Quantities for WooCommerce
 Donate Link: https://www.linkedin.com/in/mohiuddin-abdul-kader
-Tags: default, quantity, default quantity, woocommerce quantity, minimum quantity
+Tags: default, quantity, step size, decimal, fractional, default quantity, woocommerce quantity, minimum quantity
 Requires at least: 4.4
-Tested up to: 6.0.1
+Tested up to: 6.1.1
 WC requires at least: 3.1
-WC tested up to: 6.7.0
+WC tested up to: 7.2.2
 Requires PHP: 5.6
 Stable tag: 1.0.4
 License: GPLv2 or later
@@ -26,19 +26,13 @@ Simple, powerfull default quantity options. Change the default quantity and subt
 
 ## 🛍️ Supercharge Your business with the Default Quantity for WooCommerce.
 
-## SET QUANTITY STEP SIZE
+## 3 WAYS TO SET DEFAULT QUANTITIES AND STEP SIZE
 
-⚖️ Set a quantity step value less than 1 if you want to be able to sell fractional quantities (in WooCommerce / Settings / Products / Inventory ).
+⚖️ Set a global, storewide WooCommerce default quantity and step size (in WooCommerce > Settings > Products > Inventory ).
 
-⚖️ Set a quantity step larger that 1 if you want to only sell bundles.
+⚖️ Add default quantities and step sizes for entire product categories (in Products > Categories > Edit Category ).
 
-## 3 WAYS TO SET DEFAULT QUANTITIES
-
-⚖️ Set a global, storewide WooCommerce default quantity (in WooCommerce / Settings / Products / Inventory ).
-
-⚖️ Add default quantities for entire product categories (in Products / Categories / Edit Category ).
-
-⚖️ Change the default quantity for specific products. (in Products / Edit Product / Product Data / Inventory ).
+⚖️ Change the default quantity for specific products. (in Products > Edit Product > Product Data > Inventory ).
 
 ## CHOOSE ANY DEFAULT QUANTITY - EVEN ZERO!
 
@@ -48,13 +42,21 @@ Simple, powerfull default quantity options. Change the default quantity and subt
 
 ⚖️ The customer can override the default quantity and select any quantity they choose.
 
+## CHOOSE ANY STEP SIZE - ALLOW DECIMALS!
+
+⚖️ Change the WooCommerce default step size to less than 1 and allow customers to buy partial quantities.
+
+⚖️ For example set your product price per kg and step size as 0.01 to allow customers to buy as little as 10g.
+
+⚖️ Larger step sizes allow you to sell bundles.
+
 ## QUICK 2-MINUTE SETUP
 
 ⚖️ Incredibly simple to use.
 
 ⚖️ Ideal for beginners or developers.
 
-⚖️ Simply install the plugin, and start setting default and decimal quantities!
+⚖️ Simply install the plugin, and start setting default quantities and step sizes!
 
 == Changelog ==
 
@@ -64,11 +66,11 @@ Initial version released
 = 1.0.1 =
 Fix fatal error
 
-= 1.0.3 =
+= 1.0.2 =
 Fix missing admin directory
 
 = 1.0.3 =
 Tested on latest WordPress and WooCommerce
 
 = 1.0.4 =
-Added decimal quantity support (Green Glen Fork)
+Added step size
